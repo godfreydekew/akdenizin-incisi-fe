@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -9,8 +9,9 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import PageLayout from '@/components/PageLayout';
-import axios from 'axios';
-import { loginUser } from '@/api/api';
+import { loginUser } from '@/api/users/login';
+import { useAuth } from '@/store/AuthProvider';
+import { useEffect } from "react";
 
 const formSchema = z.object({
   email: z.string().email({
@@ -20,14 +21,24 @@ const formSchema = z.object({
     message: 'Password is required'
   })
 });
+
 type FormData = z.infer<typeof formSchema>;
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const {
-    toast
-  } = useToast();
-
+  const { isAuthenticated } = useAuth(); 
+  const { toast } = useToast();
+  const { login } = useAuth(); 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || '/dashboard';
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/dashboard"); 
+    }
+  }, [isAuthenticated, navigate]);
+
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -36,12 +47,13 @@ const Login = () => {
     }
   });
 
-        const onSubmit = async (data: FormData) => {
+  const onSubmit = async (data: FormData) => {
     console.log('Login data:', data);
 
     try {
       const response = await loginUser(data.email, data.password);
-      console.log(response);
+      console.log(response.accessToken);
+      login(response.accessToken);
       //post request to login
       
       toast({
@@ -49,7 +61,7 @@ const Login = () => {
         description: "You've successfully logged in."
       });
 
-      navigate('/dashboard');
+      navigate(from, { replace: true });
     } catch (err) {
       toast({
         title: "Error",

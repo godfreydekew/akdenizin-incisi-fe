@@ -4,31 +4,39 @@ import { useNavigate } from 'react-router-dom';
 import { Bot, Camera, Calendar, MapPin, ChevronRight, Sparkles } from 'lucide-react';
 import PageLayout from '@/components/PageLayout';
 import { Button } from '@/components/ui/button';
+import getUserInformation from '@/api/users/getUserInformation';
 
-// Mock user data - in a real application, this would come from an auth context or API
-const mockUser = {
-  name: "Sarah",
-  recentActivity: "Last visited 2 days ago"
-};
+// const mockUser = {
+//   name: "Sarah",
+//   recentActivity: "Last visited 2 days ago"
+// };
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const [userName, setUserName] = useState<string>(mockUser.name);
+  const [userName, setUserName] = useState<string>('');
   const [isLoading, setIsLoading] = useState(true);
   const [showWelcome, setShowWelcome] = useState(false);
 
   useEffect(() => {
-    // Simulate loading user data
+    const fetchUser = async () => {
+      try {
+        const { userInformation } = await getUserInformation();
+        setUserName(userInformation.firstName);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchUser();
+
     const timer = setTimeout(() => {
       setIsLoading(false);
-      // Show welcome message after loading
-      setTimeout(() => {
-        setShowWelcome(true);
-      }, 300);
-    }, 800);
+      setShowWelcome(true);
+    }, 300);
 
     return () => clearTimeout(timer);
   }, []);
+
 
   const featureCards = [
     {
@@ -44,7 +52,7 @@ const Dashboard = () => {
       title: "AR Explorer",
       description: "Discover historical sites with our augmented reality experience.",
       icon: <Camera className="h-10 w-10 text-white" />,
-      backgroundImage: "/public/dashboard/arexplorer.webp",
+      backgroundImage: "/dashboard/arexplorer.webp",
       route: "/ar",
       color: "from-amber-400 to-gold",
       borderColor: "border-gold/20"
@@ -53,7 +61,7 @@ const Dashboard = () => {
       title: "Events Portal",
       description: "Browse upcoming events and activities across Northern Cyprus.",
       icon: <Calendar className="h-10 w-10 text-white" />,
-      backgroundImage: "/public/dashboard/happypeople.jpg",
+      backgroundImage: "/dashboard/happypeople.jpg",
       route: "/events",
       color: "from-green-400 to-green-600",
       borderColor: "border-green-500/20"
@@ -85,7 +93,7 @@ const Dashboard = () => {
                     Ready to plan your next adventure? Discover personalized experiences and make the most of Northern Cyprus.
                   </p>
                 </div>
-                
+
                 {/* AI Chat bubble */}
                 <div className="relative flex-shrink-0 animate-float">
                   <div className="glassmorphism rounded-xl rounded-tr-none p-4 md:min-w-[220px]">
@@ -98,8 +106,8 @@ const Dashboard = () => {
                       </div>
                     </div>
                   </div>
-                  <Button 
-                    onClick={() => navigate('/chat')} 
+                  <Button
+                    onClick={() => navigate('/chat')}
                     className="mt-3 w-full bg-gradient-to-r from-ocean to-ocean-light hover:from-ocean-dark hover:to-ocean text-white"
                   >
                     Chat with AI
@@ -109,7 +117,7 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
-          
+
           {/* Decorative background elements */}
           <div className="absolute inset-0 -z-10 bg-hero-pattern opacity-70"></div>
           <div className="absolute inset-0 -z-10 overflow-hidden">
@@ -123,22 +131,22 @@ const Dashboard = () => {
           <div className="container mx-auto max-w-6xl">
             <h2 className="text-2xl font-bold mb-2 text-gray-800 dark:text-white">Your Explorer Tools</h2>
             <p className="text-gray-500 dark:text-gray-400 mb-8">Unlock the full potential of your TRNC adventure with these premium features</p>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {featureCards.map((card, index) => (
-                <div 
+                <div
                   key={index}
                   className="destination-card group cursor-pointer transition-all duration-500 border-0 overflow-hidden bg-white dark:bg-gray-900"
                   onClick={() => navigate(card.route)}
                 >
                   <div className="image-container h-60 overflow-hidden">
-                    <img 
-                      src={card.backgroundImage} 
-                      alt={card.title} 
+                    <img
+                      src={card.backgroundImage}
+                      alt={card.title}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                   </div>
-                  
+
                   <div className="p-6">
                     <div className="flex items-center mb-4">
                       <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${card.color} flex items-center justify-center mr-3`}>
