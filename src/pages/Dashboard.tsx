@@ -44,7 +44,7 @@ const Dashboard = () => {
       title: "AR Explorer",
       description: "Discover historical sites with our augmented reality experience.",
       icon: <Camera className="h-10 w-10 text-white" />,
-      backgroundImage: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
+      backgroundImage: "/public/dashboard/arexplorer.webp",
       route: "/ar",
       color: "from-amber-400 to-gold",
       borderColor: "border-gold/20"
@@ -53,7 +53,7 @@ const Dashboard = () => {
       title: "Events Portal",
       description: "Browse upcoming events and activities across Northern Cyprus.",
       icon: <Calendar className="h-10 w-10 text-white" />,
-      backgroundImage: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80",
+      backgroundImage: "/public/dashboard/happypeople.jpg",
       route: "/events",
       color: "from-green-400 to-green-600",
       borderColor: "border-green-500/20"

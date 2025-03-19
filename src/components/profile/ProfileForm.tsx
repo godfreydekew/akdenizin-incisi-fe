@@ -145,35 +145,6 @@ export const ProfileForm = () => {
                 </FormItem>
               )}
             />
-
-            <FormField
-              control={profileForm.control}
-              name="language"
-              render={({ field }) => (
-                <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
-                  <div className="space-y-0.5">
-                    <FormLabel className="flex items-center gap-2">
-                      <Languages className="h-4 w-4" />
-                      Language Preference
-                    </FormLabel>
-                    <FormDescription>
-                      Switch between English and Turkish
-                    </FormDescription>
-                  </div>
-                  <FormControl>
-                    <div className="flex items-center space-x-2">
-                      <span className={!field.value ? "font-medium" : "text-gray-500"}>EN</span>
-                      <Switch
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                      />
-                      <span className={field.value ? "font-medium" : "text-gray-500"}>TR</span>
-                    </div>
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-
             <Button type="submit" className="flex gap-1 items-center">
               <Check className="h-4 w-4" />
               Save Changes

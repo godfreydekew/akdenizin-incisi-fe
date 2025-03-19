@@ -23,19 +23,17 @@ const FeatureSections = () => {
                 
                 <div className="p-3 bg-ocean/10 rounded-lg rounded-tr-none ml-auto max-w-xs">
                   <p className="text-sm">For a 3-day trip to Northern Cyprus, I'd recommend:
+                    <br />
+                    <br />
+                    Day 1: Explore Kyrenia Harbor and Bellapais Abbey
+                    <br />
 
-Day 1: Explore Kyrenia Harbor and Bellapais Abbey
+                    Day 2: Visit Famagusta and the ghost town of Varosha
+                    <br />
 
-Day 2: Visit Famagusta and the ghost town of Varosha
-
-Day 3: Relax at Golden Beach and visit St. Hilarion Castle</p>
+                    Day 3: Relax at Golden Beach and visit St. Hilarion Castle
+                  </p>
                 </div>
-                
-                
-                
-                
-                
-                
                 
                 <div className="p-3 bg-gray-100 rounded-lg rounded-tl-none max-w-xs">
                   <p className="text-sm">That sounds perfect! Are there any local foods I should try?</p>
@@ -367,7 +365,7 @@ Day 3: Relax at Golden Beach and visit St. Hilarion Castle</p>
                       <path d="M9 11L12 8M12 8L15 11M12 8V16M3 12C3 13.1819 3.23279 14.3522 3.68508 15.4442C4.13738 16.5361 4.80031 17.5282 5.63604 18.364C6.47177 19.1997 7.46392 19.8626 8.55585 20.3149C9.64778 20.7672 10.8181 21 12 21C13.1819 21 14.3522 20.7672 15.4442 20.3149C16.5361 19.8626 17.5282 19.1997 18.364 18.364C19.1997 17.5282 19.8626 16.5361 20.3149 15.4442C20.7672 14.3522 21 13.1819 21 12C21 9.61305 20.0518 7.32387 18.364 5.63604C16.6761 3.94821 14.3869 3 12 3C9.61305 3 7.32387 3.94821 5.63604 5.63604C3.94821 7.32387 3 9.61305 3 12Z" stroke="#10B981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
-                  <h3 className="font-semibold mb-2">Shuttle Service</h3>
+                  <h3 className="font-semibold mb-2">Routes Navigation</h3>
                   <p className="text-sm text-gray-600">Book affordable airport and hotel shuttles</p>
                 </div>
               </div>

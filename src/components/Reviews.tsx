@@ -11,7 +11,7 @@ const Reviews = () => {
     location: "London, UK",
     country: "gb",
     travelers: 143,
-    recent: true
+    recent: false
   }, {
     id: 2,
     name: "Mark Thompson",
@@ -41,7 +41,7 @@ const Reviews = () => {
     location: "Sydney, Australia",
     country: "au",
     travelers: 67,
-    recent: true
+    recent: false
   }, {
     id: 5,
     name: "Olivia Rodriguez",
@@ -78,10 +78,10 @@ const Reviews = () => {
                             <span className="text-xs text-gray-500 dark:text-gray-400 uppercase">{review.country}</span>
                           </div>
                         </div>
-                        <div className="flex items-center text-xs text-gray-500 dark:text-gray-400">
+                        {/* <div className="flex items-center text-xs text-gray-500 dark:text-gray-400">
                           <Users size={12} className="mr-1" />
                           <span>Joined {review.travelers} travelers</span>
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                     

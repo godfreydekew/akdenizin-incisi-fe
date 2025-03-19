@@ -38,8 +38,8 @@ const EventDetails = () => {
       </PageLayout>;
   }
   return <PageLayout>
-      <div className="container mx-auto px-4 py-[40px]">
-        <EventHeader onShare={handleShareEvent} />
+      <div className="container mx-auto px-4 py-[40px]">+
+        {/* <EventHeader onShare={handleShareEvent} /> */}
         <EventDetailsView event={event} isSaved={isSaved} onSave={handleSaveEvent} onShare={handleShareEvent} />
       </div>
     </PageLayout>;

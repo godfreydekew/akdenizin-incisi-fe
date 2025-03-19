@@ -47,7 +47,7 @@ const Hero = () => {
       {/* Background Image with overlay */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/40 to-black/30 z-10"></div>
-        <img src="https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3648&q=80" alt="Kyrenia Harbor, Northern Cyprus" className="h-full w-full object-cover transition-transform duration-10000 ease-in-out scale-105" />
+        <img src="/hero/hero.avif" alt="Kyrenia Harbor, Northern Cyprus" className="h-full w-full object-cover transition-transform duration-10000 ease-in-out scale-105" />
         
         {/* Animated overlay elements */}
         <div className="absolute inset-0 z-20 overflow-hidden bg-gradient-to-b from-black/20 to-transparent opacity-80">

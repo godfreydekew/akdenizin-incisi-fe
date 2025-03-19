@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -9,6 +9,9 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import PageLayout from '@/components/PageLayout';
+import axios from 'axios';
+import { loginUser } from '@/api/api';
+
 const formSchema = z.object({
   email: z.string().email({
     message: 'Please enter a valid email address'
@@ -23,6 +26,8 @@ const Login = () => {
   const {
     toast
   } = useToast();
+
+  const navigate = useNavigate();
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -30,12 +35,28 @@ const Login = () => {
       password: ''
     }
   });
-  const onSubmit = (data: FormData) => {
+
+        const onSubmit = async (data: FormData) => {
     console.log('Login data:', data);
-    toast({
-      title: "Welcome back!",
-      description: "You've successfully logged in."
-    });
+
+    try {
+      const response = await loginUser(data.email, data.password);
+      console.log(response);
+      //post request to login
+      
+      toast({
+        title: "Welcome back!",
+        description: "You've successfully logged in."
+      });
+
+      navigate('/dashboard');
+    } catch (err) {
+      toast({
+        title: "Error",
+        description: "Invalid email or password. Please try again."
+      });
+    }
+
     // In a real app, you would send this data to your backend
   };
   return <PageLayout>

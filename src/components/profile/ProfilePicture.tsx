@@ -23,17 +23,9 @@ export const ProfilePicture = () => {
       reader.readAsDataURL(file);
     }
   };
-  return <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Camera className="h-5 w-5" />
-          Profile Picture
-        </CardTitle>
-        <CardDescription>
-          Update your profile picture visible to other users.
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
+  return 
+     
+  
         <div className="flex flex-col sm:flex-row gap-6 items-center">
           <div className="relative">
             <img src={profileImage} alt="Profile" className="w-32 h-32 rounded-full object-cover border border-gray-200" />
@@ -42,14 +34,7 @@ export const ProfilePicture = () => {
             </label>
             <input id="profile-image" type="file" accept="image/*" className="hidden" onChange={handleImageChange} />
           </div>
-          <div>
-            <h3 className="font-medium text-lg mb-1">Profile Photo</h3>
-            <p className="text-gray-600 text-sm mb-4">
-              JPG, GIF or PNG. Max size 800K.
-            </p>
-            
-          </div>
+         
         </div>
-      </CardContent>
-    </Card>;
+;
 };

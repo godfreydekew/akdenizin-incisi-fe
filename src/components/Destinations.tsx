@@ -25,17 +25,17 @@ const Destinations = () => {
     id: 1,
     name: "Kyrenia Harbor",
     description: "A picturesque historic harbor surrounded by restaurants and cafes.",
-    image: "https://media.istockphoto.com/id/1177847896/photo/kyrenia.jpg?s=1024x1024&w=is&k=20&c=HkbXW1rYi9D0-nfhQnIiTPVh2APPZDeVXGcKl4szdSU="
+    image: "/public/destinations/castle.jpeg"
   }, {
     id: 2,
     name: "Bellapais Abbey",
     description: "Gothic abbey ruins with breathtaking mountain and sea views.",
-    image: "https://media.istockphoto.com/id/656336458/photo/bellapais-abbey-monastery-in-northern-cyprus.jpg?s=1024x1024&w=is&k=20&c=fLCHEv94p_srf__H9yKLaQ-LWCyI7JQ3-xFFsqP-4QU="
+    image: "/public/destinations/abbey.png"
   }, {
     id: 3,
     name: "Famagusta",
     description: "Historical walled city with rich architectural heritage.",
-    image: "https://media.istockphoto.com/id/1448279091/photo/landscape-with-nissi-beach-ayia-napa-cyprus.jpg?s=1024x1024&w=is&k=20&c=GVJ_BcZpfLN1DR1acFXjZnHh5OQgXLz-WjNxJLW0xU8="
+    image: "/public/destinations/famagusta.png"
   }, {
     id: 4,
     name: "Golden Beach",
@@ -45,12 +45,12 @@ const Destinations = () => {
     id: 5,
     name: "St. Hilarion Castle",
     description: "Fairytale-like castle perched atop a mountain with panoramic views.",
-    image: "https://media.istockphoto.com/id/172207129/photo/st-hilarion-castle.jpg?s=1024x1024&w=is&k=20&c=C7uFTjJe03S6iYivmCPg2lRpZgKZ2OrY-922Sto65t8="
+    image: "/public/destinations/hilaron.png"
   }, {
     id: 6,
     name: "Salamis Ruins",
     description: "Ancient Roman ruins including a theater, gymnasium, and baths.",
-    image: "https://media.istockphoto.com/id/1466368618/photo/vacation-in-turkey-view-of-ancient-city-hierapolis-during-summer.jpg?s=1024x1024&w=is&k=20&c=MiRXrv4XudthHx__Yk6IhNa_6k4fLZMWChrwU-27o2M="
+    image: "/public/destinations/salamis.png"
   }];
   
   return <section id="destinations" className="bg-gray-50 py-20">
@@ -74,9 +74,9 @@ const Destinations = () => {
         </div>
 
         <div className="text-center mt-12">
-          <a href="#" className="hero-button primary-button inline-block">
+          {/* <a href="#" className="hero-button primary-button inline-block">
             View All Destinations
-          </a>
+          </a> */}
         </div>
       </div>
     </section>;
