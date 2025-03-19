@@ -139,7 +139,7 @@ const FeatureSections = () => {
             
             <div className="relative">
               <div className="relative mx-auto w-auto h-auto">
-                <img alt="AR Explorer" src="/lovable-uploads/0141e8f8-29f3-43e5-adf7-f805bda70c21.jpg" className="rounded-3xl shadow-xl object-fill" />
+                <img alt="AR Explorer" src="/hero/arexplorer.jpg" className="rounded-3xl shadow-xl object-fill" />
                 
                 <div className="absolute -bottom-4 -left-4 bg-white p-2 rounded-2xl shadow-lg">
                   <div className="w-12 h-12 bg-ocean rounded-xl flex items-center justify-center">

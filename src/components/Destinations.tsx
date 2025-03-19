@@ -25,17 +25,17 @@ const Destinations = () => {
     id: 1,
     name: "Kyrenia Harbor",
     description: "A picturesque historic harbor surrounded by restaurants and cafes.",
-    image: "/public/destinations/castle.jpeg"
+    image: "/destinations/castle.jpeg"
   }, {
     id: 2,
     name: "Bellapais Abbey",
     description: "Gothic abbey ruins with breathtaking mountain and sea views.",
-    image: "/public/destinations/abbey.png"
+    image: "/destinations/abbey.png"
   }, {
     id: 3,
     name: "Famagusta",
     description: "Historical walled city with rich architectural heritage.",
-    image: "/public/destinations/famagusta.png"
+    image: "/destinations/famagusta.png"
   }, {
     id: 4,
     name: "Golden Beach",
@@ -45,12 +45,12 @@ const Destinations = () => {
     id: 5,
     name: "St. Hilarion Castle",
     description: "Fairytale-like castle perched atop a mountain with panoramic views.",
-    image: "/public/destinations/hilaron.png"
+    image: "/destinations/hilaron.png"
   }, {
     id: 6,
     name: "Salamis Ruins",
     description: "Ancient Roman ruins including a theater, gymnasium, and baths.",
-    image: "/public/destinations/salamis.png"
+    image: "/destinations/salamis.png"
   }];
   
   return <section id="destinations" className="bg-gray-50 py-20">

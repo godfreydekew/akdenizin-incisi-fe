@@ -1,15 +1,25 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Eye, EyeOff, Mail, Lock, ArrowRight } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, ArrowRight, User } from 'lucide-react';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import PageLayout from '@/components/PageLayout';
+import { useAuth } from '@/store/AuthProvider';
+import { useEffect } from "react";
+import { signUpUser } from '@/api/users/signup';
+
 const formSchema = z.object({
+  firstName: z.string().min(2, {
+    message: 'First name must be at least 2 characters long'
+  }),
+  lastName: z.string().min(2, {
+    message: 'Last name must be at least 2 characters long'
+  }),
   email: z.string().email({
     message: 'Please enter a valid email address'
   }),
@@ -25,29 +35,58 @@ const formSchema = z.object({
   message: "Passwords don't match",
   path: ["confirmPassword"]
 });
+
 type FormData = z.infer<typeof formSchema>;
+
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const {
-    toast
-  } = useToast();
+  const { isAuthenticated } = useAuth(); 
+  const { toast } = useToast();
+  const { login } = useAuth(); 
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || '/dashboard';
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/dashboard"); 
+    }
+  }, [isAuthenticated, navigate]);
+
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      firstName: '',
+      lastName: '',
       email: '',
       password: '',
       confirmPassword: ''
     }
   });
-  const onSubmit = (data: FormData) => {
+
+  const onSubmit = async (data: FormData) => {
     console.log('Sign up data:', data);
-    toast({
-      title: "Account created!",
-      description: "Welcome to SmartTRNC. You can now log in."
-    });
-    // In a real app, you would send this data to your backend
+    
+    try {
+      const response = await signUpUser(data.firstName, data.lastName, data.email, data.password);
+      console.log(response.accessToken);
+      login(response.accessToken);
+         
+      toast({
+        title: `Welcome ${data.firstName}`,
+        description: "You've successfully created an account."
+      });
+    } catch (err) {
+      toast({
+        title: "Error",
+        description: "Invalid email or password. Please try again."
+      });
+    }
+
   };
+
   return <PageLayout>
       <div className="container mx-auto max-w-md px-6 py-[80px]">
         <div className="mb-8 text-center">
@@ -58,9 +97,37 @@ const SignUp = () => {
         <div className="bg-white rounded-xl shadow-sm p-8 border border-gray-100">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
+                <FormField control={form.control} name="firstName" render={({
+                field
+                }) => <FormItem>
+                      <FormLabel>First Name</FormLabel>
+                      <FormControl>
+                        <div className="relative">
+                          <User className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                          <Input placeholder="John" className="pl-10" {...field} />
+                        </div>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>} />
+
+                <FormField control={form.control} name="lastName" render={({
+                field
+                }) => <FormItem>
+                      <FormLabel>Last Name</FormLabel>
+                      <FormControl>
+                        <div className="relative">
+                          <User className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                          <Input placeholder="Doe" className="pl-10" {...field} />
+                        </div>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>} />
+              </div>
+
               <FormField control={form.control} name="email" render={({
               field
-            }) => <FormItem>
+              }) => <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
                       <div className="relative">
@@ -73,7 +140,7 @@ const SignUp = () => {
 
               <FormField control={form.control} name="password" render={({
               field
-            }) => <FormItem>
+              }) => <FormItem>
                     <FormLabel>Password</FormLabel>
                     <FormControl>
                       <div className="relative">
@@ -89,7 +156,7 @@ const SignUp = () => {
 
               <FormField control={form.control} name="confirmPassword" render={({
               field
-            }) => <FormItem>
+              }) => <FormItem>
                     <FormLabel>Confirm Password</FormLabel>
                     <FormControl>
                       <div className="relative">
@@ -138,4 +205,5 @@ const SignUp = () => {
       </div>
     </PageLayout>;
 };
+
 export default SignUp;
